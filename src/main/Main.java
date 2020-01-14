@@ -16,27 +16,16 @@ public class Main {
 	 * 
 	 * ***/
     public static void main(String[] args) {
-    	sendHttpOnDifferentThread();
+    	 String myUrl="";
+    	 String jsonInputString = "";
+    	 String requestType = "POST";
+    	
+    	 HttpUtilities.sendHttpOnDifferentThread(  myUrl,
+    		 jsonInputString,
+    			 requestType);
     }
     
     
-    private static void sendHttp() throws IOException {
-        	 String myUrl = ""; 
-        	 String jsonInputString ="heck";
-        	 String requestType ="POST";
-            HttpUtilities http = new  HttpUtilities();
-  		http.createPostWithBody(myUrl, jsonInputString, requestType);
-  	
-    }
-    private static void sendHttpOnDifferentThread()  {
-	 new Thread(() -> {
-		 try {
-			sendHttp();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-				
-  	}).start();
-    }
+
 	 
     }

@@ -22,6 +22,32 @@ public class HttpUtilities {
 	
 	
 	
+	
+	
+	
+    private void sendHttp( String myUrl,
+	 String jsonInputString,
+	 String requestType) throws IOException {
+        	
+            HttpUtilities http = new  HttpUtilities();
+  		http.createPostWithBody(myUrl, jsonInputString, requestType);
+  	
+    }
+    public void sendHttpOnDifferentThread( String myUrl,
+    		 String jsonInputString,
+    		 String requestType)  {
+	 new Thread(() -> {
+		 try {
+			sendHttp(myUrl,
+					jsonInputString,
+					 requestType);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+  	}).start();
+    }
+	
 	/**
 	*
 	* @author Anthony Scheeres
