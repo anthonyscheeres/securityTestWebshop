@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 import service.HttpUtilities;
 
@@ -15,12 +16,7 @@ public class Main {
 	 * 
 	 * ***/
     public static void main(String[] args) {
-      try {
-		sendHttp();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+    	sendHttpOnDifferentThread();
     }
     
     
@@ -32,6 +28,15 @@ public class Main {
   		http.createPostWithBody(myUrl, jsonInputString, requestType);
   	
     }
-    
-
-}
+    private static void sendHttpOnDifferentThread()  {
+	 new Thread(() -> {
+		 try {
+			sendHttp();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+  	}).start();
+    }
+	 
+    }
