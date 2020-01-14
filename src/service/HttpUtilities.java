@@ -111,7 +111,7 @@ public class HttpUtilities {
 		public String createPostWithBody(String myUrl, String jsonInputString, String requestType) throws IOException {
 			URL url = new URL (myUrl);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
-			con.setRequestMethod("POST");
+			con.setRequestMethod(requestType);
 			
 			con.setRequestProperty("Content-Type", "application/json; charset=utf-8");
 			con.setRequestProperty("Accept", "application/json");
