@@ -11,6 +11,8 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import main.Main;
+
 /**
 *
 * @author Anthony Scheeres
@@ -25,7 +27,7 @@ public class HttpUtilities {
 	
 	
 	
-    private void sendHttp( String myUrl,
+    private static void sendHttp( String myUrl,
 	 String jsonInputString,
 	 String requestType) throws IOException {
         	
@@ -33,7 +35,7 @@ public class HttpUtilities {
   		http.createPostWithBody(myUrl, jsonInputString, requestType);
   	
     }
-    public void sendHttpOnDifferentThread( String myUrl,
+    public static void sendHttpOnDifferentThread( String myUrl,
     		 String jsonInputString,
     		 String requestType)  {
 	 new Thread(() -> {
@@ -41,8 +43,12 @@ public class HttpUtilities {
 			sendHttp(myUrl,
 					jsonInputString,
 					 requestType);
+			
+			Main.spam();
 		} catch (IOException e) {
 			e.printStackTrace();
+
+			Main.spam();
 		}
 				
   	}).start();
